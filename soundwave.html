@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body{
+        margin: 0;
+       }
+        .audio-examples-sec{
+           background-color: rgb(49, 49, 49);
+           width: 100%;
+           padding: 100px 0px;
+            
+        }
+        
+        .audio-wrapper{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            background-color: #fff;
+            padding: 10px;
+            width: 80%;
+            margin: auto;
+            
+        }
+        .soundvawe{
+            
+            background: black;
+             display: flex;
+             justify-content: space-between;
+             padding: 10px;
+             align-items: center
+        }
+        .wave-width{
+            width: 100%;
+            
+        }
+        .play img{
+            width: 70px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+   <div class="audio-examples-sec">
+        
+        <div class="audio-wrapper">
+            
+            <div class="soundvawe">
+                <div class="play"><img src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg" id="play1" alt=""></div>
+                
+                <div id="waveform" class="wave-width"></div>
+            </div>
+            <div class="soundvawe">
+                <div class="play"><img src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg" id="play2" alt=""></div>
+               
+                <div id="waveform2" class="wave-width"></div>
+            </div>
+            <div class="soundvawe">
+                <div class="play"><img src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg" id="play3" alt=""></div>
+                
+                <div id="waveform3" class="wave-width"></div>
+            </div>
+            <div class="soundvawe">
+                <div class="play"><img src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg" id="play4" alt=""></div>
+                <div id="waveform4" class="wave-width"></div>
+            </div>
+
+        </div>    
+
+        
+    
+    </div>
+    
+    
+    <script type="module">
+        import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+
+        let buttons=document.querySelectorAll(".play img");
+        let perm=true;
+        
+        
+        //first
+        const wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+          waveColor: '#131313',
+          progressColor: '#fff',
+          barWidth: 2,
+          barGap: 1,
+          height: 60,
+          barRadius: 2,
+          url: 'https://www.kozco.com/tech/piano2.wav',
+        })
+        
+        wavesurfer.on('interaction', () => {
+          if(perm)
+            {  wavesurfer.play()
+                perm=false;
+            }
+
+        })
+        wavesurfer.on('finish', () => {
+        buttons[0].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg"
+        perm=true;
+        })
+        wavesurfer.on('click', (relativeX) => {
+            buttons[0].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+        })
+
+        //second
+        const wavesurfer2 = WaveSurfer.create({
+          container: '#waveform2',
+          waveColor: '#131313',
+          progressColor: '#fff',
+          barWidth: 2,
+          barGap: 1,
+          height: 60,
+          barRadius: 2,
+          url: 'https://www.kozco.com/tech/piano2.wav',
+        })
+        
+        wavesurfer2.on('interaction', () => {
+          if(perm)
+           { wavesurfer2.play()
+            perm=false;
+            }
+        })
+        wavesurfer2.on('finish', () => {
+        buttons[1].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg"
+        })
+        wavesurfer2.on('click', (relativeX) => {
+            buttons[1].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+        })
+
+    //third
+    const wavesurfer3 = WaveSurfer.create({
+          container: '#waveform3',
+          waveColor: '#131313',
+          progressColor: '#fff',
+          barWidth: 2,
+          barGap: 1,
+          height: 60,
+          barRadius: 2,
+          url: 'https://www.kozco.com/tech/piano2.wav',
+        })
+        
+        wavesurfer3.on('interaction', () => {
+          wavesurfer3.play()
+        })
+        wavesurfer3.on('finish', () => {
+        buttons[2].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg"
+        })
+        wavesurfer3.on('click', (relativeX) => {
+            buttons[2].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+        })
+
+    //fourth
+    const wavesurfer4 = WaveSurfer.create({
+          container: '#waveform4',
+          waveColor: '#131313',
+          progressColor: '#fff',
+          barWidth: 2,
+          barGap: 1,
+          height: 60,
+          barRadius: 2,
+          url: 'https://www.kozco.com/tech/piano2.wav',
+        })
+        
+        wavesurfer4.on('interaction', () => {
+          wavesurfer4.play()
+        })
+        wavesurfer4.on('finish', () => {
+        buttons[3].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg"
+        })
+        wavesurfer4.on('click', (relativeX) => {
+            buttons[3].src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+        })
+
+        
+        
+        buttons.forEach(btn=>{
+            btn.addEventListener("click",()=>{
+
+                switch(btn.getAttribute("id")){
+
+                case "play1":{ 
+                    wavesurfer.playPause()
+                    
+                    if(btn.src.includes("Play")){
+                        btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+                    }else btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg";
+                
+                };break;
+
+                case "play2":{
+                    wavesurfer2.playPause()
+                   
+                    if(btn.src.includes("Play")){
+                        btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+                    }else btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg";
+                };break;
+
+                case "play3":{
+                    wavesurfer3.playPause()
+
+                    if(btn.src.includes("Play")){
+                        btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+                    }else btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg";
+                };break;
+
+                case "play4":{ 
+                    wavesurfer4.playPause()
+                    
+                    if(btn.src.includes("Play")){
+                        btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447e_Stop_fill.svg";
+                    }else btn.src="https://uploads-ssl.webflow.com/6560effa96d4ba1b117a7b59/65cf91d6bd8f0f795811447d_Play_fill.svg";
+                };break;
+            }
+
+            })
+            
+            
+
+        })
+       
+        //document.querySelector("#play").addEventListener("click",()=>{
+          //  wavesurfer.playPause();
+        //})
+        </script>
+</body>
+</html>
